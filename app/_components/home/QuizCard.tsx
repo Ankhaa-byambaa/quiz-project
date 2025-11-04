@@ -15,8 +15,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 export function QuizCard() {
-  const [arrticleTitle, steArrticleTitle] = useState(false);
-  const [date, setDate] = useState("");
+  const [aTCON, setATCON] = useState<Boolean>(false);
+  const [articleTitle, setArticleTitle] = useState<String>("");
+  const [articleContent, setArticleContent] = useState<String>("");
+
+  async function articleContenthandleOnChange(e: React.FormEvent) {
+    e.preventDefault();
+    if (articleTitle != "" || articleContent != "") {
+      setATCON(true);
+    }
+  }
+  console.log("jhdcgasdjfh", aTCON);
   return (
     <Card className="w-150 ">
       <CardHeader>
@@ -38,9 +47,11 @@ export function QuizCard() {
                 Article Title
               </Label>
               <Input
-                className=""
+                onChange={(e) => {
+                  setArticleTitle(e.target.value);
+                }}
+                value={`${articleTitle}`}
                 id="email"
-                type="text"
                 placeholder="Enter a title for your article..."
                 required
               />
@@ -53,6 +64,8 @@ export function QuizCard() {
                 </Label>
               </div>
               <Textarea
+                onChange={(e) => setArticleContent(e.target.value)}
+                value={`${articleContent}`}
                 id="password"
                 required
                 placeholder="Paste your article content here..."
@@ -62,9 +75,11 @@ export function QuizCard() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-end">
+        {/* component bolgono click hiih ued skeleton garch ireed daraa ni quick test 5 asuult garch irne  */}
         <Button
+          onClick={articleContenthandleOnChange}
           type="submit"
-          disabled={arrticleTitle || !date}
+          // disabled={aTCON}
           className="w-40 background/bg-primary text-primary-foreground"
         >
           Generate summary
