@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import { GenerateSummary } from "./GenerateSummary";
 
 export function QuizCard() {
   const [aTCON, setATCON] = useState<Boolean>(false);
@@ -76,14 +77,10 @@ export function QuizCard() {
       </CardContent>
       <CardFooter className="flex justify-end">
         {/* component bolgono click hiih ued skeleton garch ireed daraa ni quick test 5 asuult garch irne  */}
-        <Button
-          onClick={articleContenthandleOnChange}
-          type="submit"
-          // disabled={aTCON}
-          className="w-40 background/bg-primary text-primary-foreground"
-        >
-          Generate summary
-        </Button>
+
+        <GenerateSummary
+          articleContenthandleOnChange={`${articleContenthandleOnChange}`}
+        />
       </CardFooter>
     </Card>
   );
