@@ -1,8 +1,7 @@
 import { cookies } from "next/headers";
-
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { SideBar } from "./SideBar";
-import { Header } from "./Header";
+import { Header } from "../_components/main/Header";
+import { SideBar } from "../_components/main/SideBar";
 
 export async function Layout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
@@ -10,12 +9,15 @@ export async function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <SidebarProvider className="py-14" defaultOpen={false}>
+      <SidebarProvider defaultOpen={false}>
         <div className="flex">
-          <SideBar />
+          <Header />
           <main className="px-14">
             <SidebarTrigger />
-            {children}
+            <div>
+              <SideBar />
+              {children}
+            </div>
           </main>
         </div>
       </SidebarProvider>

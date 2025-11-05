@@ -13,7 +13,7 @@ export function SideBar() {
 
   return (
     <>
-      <Sidebar className="my-4 mx-10">
+      <Sidebar className="my-4 mx-10 flex flex-col pt-14">
         <SidebarHeader>
           <p className="text-5 text-foreground font-semibold pt-4 pr-4">
             History
