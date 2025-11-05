@@ -12,10 +12,13 @@ export async function Layout({ children }: { children: React.ReactNode }) {
       <SidebarProvider defaultOpen={false}>
         <div className="flex">
           <Header />
-          <main className="px-14">
-            <SidebarTrigger />
-            <div>
-              <SideBar />
+          <SideBar />
+          <main>
+            <div className=" flex gap-20 ">
+              <div className="h-screen w-15 bg-white border border-[#E4E4E7] flex justify-center  ">
+                <SidebarTrigger className="pt-20" />
+              </div>
+
               {children}
             </div>
           </main>

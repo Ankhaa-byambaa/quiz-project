@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import { GenerateSummary } from "./GenerateSummary";
 
 export function QuizCard() {
   const [aTCON, setATCON] = useState<Boolean>(false);
@@ -22,13 +21,30 @@ export function QuizCard() {
 
   async function articleContenthandleOnChange(e: React.FormEvent) {
     e.preventDefault();
-    if (articleTitle != "" || articleContent != "") {
-      setATCON(true);
-    }
+    //   const addtitle = fetch("api/article/", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ chat: articleTitle }),
+    //   });
+    //   if (articleTitle != "" || articleContent != "") {
+    //     setATCON(true);
+    //   }
+    // }
+    //   const addContent = fetch("api/article/", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ chat: articleTitle }),
+    //   });
+    //   if (articleTitle != "" || articleContent != "") {
+    //     setATCON(true);
+    //   }
   }
-  console.log("jhdcgasdjfh", aTCON);
   return (
-    <Card className="w-150 ">
+    <Card className="w-150 mt-20 ">
       <CardHeader>
         <CardTitle className="flex text-black text-[26px] gap-2">
           <img className="w-8" src={"Article Generator Icon.png"} />
@@ -77,10 +93,14 @@ export function QuizCard() {
       </CardContent>
       <CardFooter className="flex justify-end">
         {/* component bolgono click hiih ued skeleton garch ireed daraa ni quick test 5 asuult garch irne  */}
-
-        <GenerateSummary
-          articleContenthandleOnChange={`${articleContenthandleOnChange}`}
-        />
+        <Button
+          onClick={articleContenthandleOnChange}
+          type="submit"
+          // disabled={aTCON}
+          className="w-40 background/bg-primary text-primary-foreground"
+        >
+          Generate summary
+        </Button>
       </CardFooter>
     </Card>
   );
