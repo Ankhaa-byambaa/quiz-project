@@ -1,11 +1,13 @@
 import { Layout } from "../(protected)/Layout";
+import { TakeQuiz } from "../_components/home/TakeQuiz";
 
 function Page() {
+  // question answer iig ni fetcher awaad takequiz ruu  ywuulna
   return (
     <>
       <div>
         <Layout>
-          <div className=" py-14"></div>
+          <TakeQuiz />
         </Layout>
       </div>
     </>

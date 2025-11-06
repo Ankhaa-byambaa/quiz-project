@@ -15,34 +15,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 export function QuizCard() {
-  const [aTCON, setATCON] = useState<Boolean>(false);
+  const [response, setResponse] = useState<String>("");
   const [articleTitle, setArticleTitle] = useState<String>("");
+  const [title, setTitle] = useState<String>("");
   const [articleContent, setArticleContent] = useState<String>("");
 
-  async function articleContenthandleOnChange(e: React.FormEvent) {
-    e.preventDefault();
-    //   const addtitle = fetch("api/article/", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ chat: articleTitle }),
-    //   });
-    //   if (articleTitle != "" || articleContent != "") {
-    //     setATCON(true);
-    //   }
-    // }
-    //   const addContent = fetch("api/article/", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ chat: articleTitle }),
-    //   });
-    //   if (articleTitle != "" || articleContent != "") {
-    //     setATCON(true);
-    //   }
-  }
+  const OnSend = async () => {
+    const sendArticle = await fetch("api/article/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ chat: articleTitle }),
+    });
+  };
   return (
     <Card className="w-150 mt-20 ">
       <CardHeader>
@@ -65,9 +51,9 @@ export function QuizCard() {
               </Label>
               <Input
                 onChange={(e) => {
-                  setArticleTitle(e.target.value);
+                  setTitle(e.target.value);
                 }}
-                value={`${articleTitle}`}
+                value={`${title}`}
                 id="email"
                 placeholder="Enter a title for your article..."
                 required
@@ -94,8 +80,8 @@ export function QuizCard() {
       <CardFooter className="flex justify-end">
         {/* component bolgono click hiih ued skeleton garch ireed daraa ni quick test 5 asuult garch irne  */}
         <Button
-          onClick={articleContenthandleOnChange}
           type="submit"
+          onClick={OnSend}
           // disabled={aTCON}
           className="w-40 background/bg-primary text-primary-foreground"
         >
