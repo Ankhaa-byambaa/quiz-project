@@ -57,20 +57,12 @@ export function Summarize() {
           <img className="w-8" src={"Article Generator Icon.png"} />
           Article Quiz Generator
         </CardTitle>
-        <CardDescription className=" text-muted-foreground">
-          Paste your article below to generate a summarize and quiz question.
-          Your articles will saved in the sidebar for future reference.
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <form>
           <div className="flex flex-col gap-6 ">
             <>
               <div>
-                <Label htmlFor="email  text-muted-foreground">
-                  <img className="w-4" src={"Shape.png"} />
-                  Article Quiz Generator
-                </Label>
                 <div className="flex gap-2 items-center">
                   <img className="w-4 h-4" src={"book-open.png"} />
                   <p>Summarized content</p>

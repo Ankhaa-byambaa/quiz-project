@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -12,22 +11,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export function QuizCard() {
-  const [response, setResponse] = useState<String>("");
-  const [articleTitle, setArticleTitle] = useState<String>("");
+  const [response, setResponse] = useState("");
   const [title, setTitle] = useState<String>("");
-  const [articleContent, setArticleContent] = useState<String>("");
+  const [Content, setContent] = useState<String>("");
 
   const OnSend = async () => {
-    const sendArticle = await fetch("api/article/", {
+    const response = await fetch("api/article/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ chat: articleTitle }),
+      body: JSON.stringify({ chat: Content }),
     });
+    const data = await response.json();
+    if (data) {
+      setResponse(data.message);
+      console.log(data.message);
+    }
   };
   return (
     <Card className="w-150 mt-20 ">
@@ -67,8 +70,8 @@ export function QuizCard() {
                 </Label>
               </div>
               <Textarea
-                onChange={(e) => setArticleContent(e.target.value)}
-                value={`${articleContent}`}
+                onChange={(e) => setContent(e.target.value)}
+                value={`${Content}`}
                 id="password"
                 required
                 placeholder="Paste your article content here..."
@@ -78,7 +81,6 @@ export function QuizCard() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-end">
-        {/* component bolgono click hiih ued skeleton garch ireed daraa ni quick test 5 asuult garch irne  */}
         <Button
           type="submit"
           onClick={OnSend}
