@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CancelQuiz } from "./CancelQuiz";
 
 export function TakeQuiz() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
@@ -17,20 +17,20 @@ export function TakeQuiz() {
     setStep(count++);
   };
 
-  const onSendChat = async () => {
-    const response = await fetch("/api/gemini", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    });
-    const data = await response.json();
-    console.log(data.message);
-    if (data) {
-      setAnswer1(data.message);
-    }
-  };
+  // const onSendChat = async () => {
+  //   const response = await fetch("/api/gemini", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({}),
+  //   });
+  //   const data = await response.json();
+  //   console.log(data.message);
+  //   if (data) {
+  //     setAnswer1(data.message);
+  //   }
+  // };
 
   if (step === 1) {
     return (
@@ -54,24 +54,34 @@ export function TakeQuiz() {
               </p>
 
               <div className="flex gap-1">
-                <p className="text-xl font-bold black">{question}</p>/
+                <p className="text-xl font-bold black">2</p>/
                 <span className="text-base text-black ">{totalQuestion}</span>
               </div>
             </div>
             <div className=" grid grid-cols-2 gap-4">
               <Button
-                onClick={onSendChat}
-                className="text-[14px]  hover:bg-gray-300 text-black bg-white"
+                onClick={handleOnClick}
+                // onClick={onSendChat}
+                className="text-[14px] border   hover:bg-gray-300 text-black bg-white"
               >
                 {answer1} Yesugei
               </Button>
-              <Button className="text-[14px]  hover:bg-gray-300 border text-black bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px]  hover:bg-gray-300 border text-black bg-white"
+              >
                 {answer2}Temüjin
               </Button>
-              <Button className="text-[14px] hover:bg-gray-300 border text-black  bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px] hover:bg-gray-300 border text-black  bg-white"
+              >
                 {answer3}Toghrul
               </Button>
-              <Button className="text-[14px] hover:bg-gray-300 border text-black  bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px] hover:bg-gray-300 border text-black  bg-white"
+              >
                 {answer4}Jamukha
               </Button>
             </div>
@@ -112,13 +122,22 @@ export function TakeQuiz() {
               >
                 {answer1} Around 1187
               </Button>
-              <Button className="text-[14px]  hover:text-white border text-black bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px]  hover:text-white border text-black bg-white"
+              >
                 {answer2}Around 1182
               </Button>
-              <Button className="text-[14px]  hover:text-white border text-black  bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px]  hover:text-white border text-black  bg-white"
+              >
                 {answer3}Around 1220
               </Button>
-              <Button className="text-[14px]  hover:text-white border text-black  bg-white">
+              <Button
+                onClick={handleOnClick}
+                className="text-[14px]  hover:text-white border text-black  bg-white"
+              >
                 {answer4}Around 1120
               </Button>
             </div>

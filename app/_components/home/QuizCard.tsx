@@ -14,19 +14,34 @@ import { Textarea } from "@/components/ui/textarea";
 import React, { useState } from "react";
 
 export function QuizCard() {
+  const [aTCON, setATCON] = useState(false);
   const [response, setResponse] = useState("");
   const [title, setTitle] = useState<String>("");
-  const [Content, setContent] = useState<String>("");
+  const [content, setContent] = useState<String>("");
 
-  const OnSend = async () => {
+  const handleOnSend = async () => {
+    const res = await fetch("api/gemini/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: content }),
+    });
+    const data1 = await res.text();
+    console.log("DATA", data1);
+    if (data1) {
+      setResponse(data1);
+      console.log(data1);
+    }
     const response = await fetch("api/article/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ chat: Content }),
+      body: JSON.stringify({ body: content }),
     });
     const data = await response.json();
+    console.log("DAT", data);
     if (data) {
       setResponse(data.message);
       console.log(data.message);
@@ -71,7 +86,7 @@ export function QuizCard() {
               </div>
               <Textarea
                 onChange={(e) => setContent(e.target.value)}
-                value={`${Content}`}
+                value={`${content}`}
                 id="password"
                 required
                 placeholder="Paste your article content here..."
@@ -83,8 +98,8 @@ export function QuizCard() {
       <CardFooter className="flex justify-end">
         <Button
           type="submit"
-          onClick={OnSend}
-          // disabled={aTCON}
+          onClick={handleOnSend}
+          disabled={aTCON}
           className="w-40 background/bg-primary text-primary-foreground"
         >
           Generate summary
