@@ -21,46 +21,32 @@ export function QuizCard() {
   const [content, setContent] = useState<String>("");
 
   const handleOnSend = async () => {
-    const res = await fetch("api/gemini/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: content }),
-    });
-    const data1 = await res.text();
-    console.log("DATA", data1);
-    if (data1) {
-      setResponse(data1);
-      console.log("DATA!", data1);
-    }
-    const res1 = await fetch("api/quiz/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: content }),
-    });
-    const data2 = await res1.text();
-    console.log("DATA", data2);
-    if (data1) {
-      setResponse(data1);
-      console.log("DATA!", data1);
-    }
-
-    // const response = await fetch("api/article/", {
+    // const res1 = await fetch("api/quiz/", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
-    //   body: JSON.stringify({ body: content }),
+    //   body: JSON.stringify({ content: content }),
     // });
-    // const data = await response.json();
-    // console.log("ADDED DATA", data);
-    // if (data) {
-    //   setResponse(data.message);
-    //   console.log(data.message);
+    // const data2 = await res1.text();
+    // console.log("DATA", data2);
+    // if (data1) {
+    //   setResponse(data1);
+    //   console.log("DATA!", data1);
     // }
+
+    const response = await fetch("/api/article", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (data) {
+      setResponse(data.message);
+      console.log("DATA IS HERE ", data.message);
+    }
   };
   return (
     <Card className="w-150 mt-20 ">
