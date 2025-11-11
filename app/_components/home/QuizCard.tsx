@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,9 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import React, { useState } from "react";
+import { Summarize } from "./Summarize";
+//1. neon --> title content summary quiz
+//2. gemini --> summary quiz
 
 export function QuizCard() {
-  const [aTCON, setATCON] = useState(false);
   const [response, setResponse] = useState("");
   const [title, setTitle] = useState<String>("");
   const [content, setContent] = useState<String>("");
@@ -31,21 +32,35 @@ export function QuizCard() {
     console.log("DATA", data1);
     if (data1) {
       setResponse(data1);
-      console.log(data1);
+      console.log("DATA!", data1);
     }
-    const response = await fetch("api/article/", {
+    const res1 = await fetch("api/quiz/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ body: content }),
+      body: JSON.stringify({ content: content }),
     });
-    const data = await response.json();
-    console.log("DAT", data);
-    if (data) {
-      setResponse(data.message);
-      console.log(data.message);
+    const data2 = await res1.text();
+    console.log("DATA", data2);
+    if (data1) {
+      setResponse(data1);
+      console.log("DATA!", data1);
     }
+
+    // const response = await fetch("api/article/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ body: content }),
+    // });
+    // const data = await response.json();
+    // console.log("ADDED DATA", data);
+    // if (data) {
+    //   setResponse(data.message);
+    //   console.log(data.message);
+    // }
   };
   return (
     <Card className="w-150 mt-20 ">
@@ -96,14 +111,11 @@ export function QuizCard() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button
-          type="submit"
-          onClick={handleOnSend}
-          disabled={aTCON}
-          className="w-40 background/bg-primary text-primary-foreground"
-        >
-          Generate summary
-        </Button>
+        <Summarize
+          handleOnSend={handleOnSend}
+          title={`${title}`}
+          content={`${content}`}
+        />
       </CardFooter>
     </Card>
   );
