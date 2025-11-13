@@ -11,13 +11,14 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 type SummarizeCardProps = {
   content: string;
+  title: string;
 };
 // 1. neon --> summary title content
 //2. next button click--> quiz page
-export function SummarizeCard({ content }: SummarizeCardProps) {
+export function SummarizeCard({ content, title }: SummarizeCardProps) {
   function OnSend() {}
   const [aTCON, setATCON] = useState(false);
-  const [title, setTitle1] = useState("iuhig");
+  const [title1, setTitle1] = useState("iuhig");
 
   const handleOnSend = async () => {
     // const response = await fetch("api/article/", {

@@ -7,31 +7,32 @@ type SummarizeProps = {
   handleOnSend: MouseEventHandler<HTMLButtonElement>;
   content: string;
   title: string;
+  button: any;
 };
-//1. click--> aTCON true
 
-export function Summarize({ handleOnSend, content, title }: SummarizeProps) {
-  const [aTCON, setATCON] = useState(false);
-
-  function OnSend() {
-    return <></>;
-  }
-
-  if (aTCON === true) {
-    // return <SummarizeCard title={`${title}`} content={`${content}`} />;
-  }
-  return (
-    <>
-      {/* <a href="/summarizeHIstory"> */}
+export function Summarize({
+  handleOnSend,
+  content,
+  title,
+  button,
+}: SummarizeProps) {
+  const [b, setB] = useState<boolean>(true);
+  if (b === true) {
+    <a href="/summarizeHIstory">
       <Button
         type="submit"
         onClick={handleOnSend}
-        disabled={aTCON}
+        disabled={button}
         className="w-40 background/bg-primary text-primary-foreground"
       >
         Generate summary
       </Button>
-      {/* </a> */}
-    </>
-  );
+    </a>;
+  } else {
+    return (
+      <>
+        <SummarizeCard title={`${title}`} content={`${content}`} />
+      </>
+    );
+  }
 }

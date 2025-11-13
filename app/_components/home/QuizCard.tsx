@@ -22,19 +22,19 @@ export function QuizCard() {
   const [content, setContent] = useState<String>("");
 
   const handleOnSend = async () => {
-    // const res1 = await fetch("api/quiz/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ content: content }),
-    // });
-    // const data2 = await res1.text();
-    // console.log("DATA", data2);
-    // if (data1) {
-    //   setResponse(data1);
-    //   console.log("DATA!", data1);
-    // }
+    const res1 = await fetch("api/quiz/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: content }),
+    });
+    const data1 = await res1.text();
+    console.log("DATA", data1);
+    if (data1) {
+      setResponse(data1);
+      console.log("DATA!", data1);
+    }
 
     const response = await fetch("/api/article", {
       method: "GET",
@@ -104,6 +104,7 @@ export function QuizCard() {
             handleOnSend={handleOnSend}
             title={`${title}`}
             content={`${content}`}
+            button={`${button}`}
           />
         ) : (
           <></>
