@@ -1,6 +1,10 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Header } from "../_components/main/Header";
 import { SideBar } from "../_components/main/SideBar";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { Skeleton } from "@/components/ui/skeleton";
 export async function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>

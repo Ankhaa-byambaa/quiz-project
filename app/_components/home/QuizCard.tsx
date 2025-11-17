@@ -17,7 +17,7 @@ import { Summarize } from "./Summarize";
 
 export function QuizCard() {
   const [response, setResponse] = useState("");
-  const [button, setButton] = useState(false);
+  const [bot, setBot] = useState(true);
   const [title, setTitle] = useState<String>("");
   const [content, setContent] = useState<String>("");
 
@@ -48,7 +48,7 @@ export function QuizCard() {
       setResponse(data.message);
       console.log("DATA IS HERE ", data.message);
     }
-    setButton(true);
+    setBot(true);
   };
   return (
     <Card className="w-150 mt-20 ">
@@ -99,12 +99,11 @@ export function QuizCard() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-end">
-        {button ? (
+        {bot ? (
           <Summarize
             handleOnSend={handleOnSend}
             title={`${title}`}
             content={`${content}`}
-            button={`${button}`}
           />
         ) : (
           <></>
