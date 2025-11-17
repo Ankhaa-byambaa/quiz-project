@@ -14,25 +14,26 @@ type SummarizeCardProps = {
   title: string;
 };
 // 1. neon --> summary title content
-//2. next button click--> quiz page
+// 2. next button click--> quiz page
+
 export function SummarizeCard({ content, title }: SummarizeCardProps) {
   function OnSend() {}
   const [aTCON, setATCON] = useState(false);
   const [title1, setTitle1] = useState("iuhig");
 
   const handleOnSend = async () => {
-    // const response = await fetch("api/article/", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await response.json();
-    // console.log("ADDED DATA", data);
-    // if (data) {
-    //   setTitle1(data.message);
-    //   console.log(data.message);
-    // }
+    const response = await fetch("api/article/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log("ADDED DATA", data);
+    if (data) {
+      setTitle1(data.message);
+      console.log(data.message);
+    }
   };
 
   useEffect(() => {

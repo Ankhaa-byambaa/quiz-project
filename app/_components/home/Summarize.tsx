@@ -8,11 +8,9 @@ type SummarizeProps = {
   content: string;
   title: string;
 };
-
 export function Summarize({ handleOnSend, content, title }: SummarizeProps) {
   const [b, setB] = useState<boolean>(true);
-  if (b === true) {
-  } else {
+  if (b !== true) {
     return (
       <>
         <SummarizeCard title={`${title}`} content={`${content}`} />
@@ -21,19 +19,15 @@ export function Summarize({ handleOnSend, content, title }: SummarizeProps) {
   }
   return (
     <>
-      {b ? (
-        <a href="/summarizeHIstory">
-          <Button
-            type="submit"
-            onClick={handleOnSend}
-            className="w-40 background/bg-primary text-primary-foreground"
-          >
-            Generate summary
-          </Button>
-        </a>
-      ) : (
-        <></>
-      )}
+      <a href="/summarizeHIstory">
+        <Button
+          type="submit"
+          onClick={handleOnSend}
+          className="w-40 background/bg-primary text-primary-foreground"
+        >
+          Generate summary
+        </Button>
+      </a>
     </>
   );
 }

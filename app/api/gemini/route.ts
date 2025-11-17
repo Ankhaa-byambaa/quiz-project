@@ -11,6 +11,6 @@ export const POST = async (req: NextRequest) => {
     contents: `Please provide a concise summary of the following article: ${content}`,
   });
 
-  console.log(response.text);
+  console.log("RESPONSE ", response.text);
   return NextResponse.json({ message: response.text });
 };

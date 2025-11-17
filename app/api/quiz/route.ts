@@ -5,11 +5,11 @@ const ai = new GoogleGenAI({});
 
 export const POST = async (req: NextRequest) => {
   const { body } = await req.json();
-  const { title1 } = body.title;
+  const { content } = body.content;
 
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
-    contents: `Generate 5 multiple choice questions based on this article: ${title1}. Return the response in this exact JSON format:
+    contents: `Generate 5 multiple choice questions based on this article: ${content}. Return the response in this exact JSON format:
       [
         {
           "question": "Question text here",

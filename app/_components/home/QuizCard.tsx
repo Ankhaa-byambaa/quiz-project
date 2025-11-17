@@ -10,10 +10,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Summarize } from "./Summarize";
-//1. neon --> title content summary quiz
-//2. gemini --> summary quiz
 
 export function QuizCard() {
   const [response, setResponse] = useState("");
@@ -22,34 +20,33 @@ export function QuizCard() {
   const [content, setContent] = useState<String>("");
 
   const handleOnSend = async () => {
-    const res1 = await fetch("api/quiz/", {
+    const res = await fetch("api/quiz/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ content: content }),
     });
-    const data1 = await res1.text();
+    const data1 = await res.text();
     console.log("DATA", data1);
     if (data1) {
       setResponse(data1);
-      console.log("DATA!", data1);
+      console.log("DATA!!!!!", data1);
     }
-
-    const response = await fetch("/api/article", {
+    const response = await fetch("/api/gemini", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
     const data = await response.json();
-
     if (data) {
       setResponse(data.message);
       console.log("DATA IS HERE ", data.message);
     }
     setBot(true);
   };
+
   return (
     <Card className="w-150 mt-20 ">
       <CardHeader>
